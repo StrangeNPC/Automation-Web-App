@@ -3,7 +3,7 @@
 
 The project is built using Django and allows users to upload Excel and contract files, perform automation using the uploaded files, and download the generated file. The views.py file contains the code that handles file uploads and automation.
 
-
+![Example Image](./ReadmeImage1)
 
 
 ## Installation
