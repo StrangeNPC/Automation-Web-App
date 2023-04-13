@@ -25,6 +25,10 @@ pip install -r requirements.txt.
     
 ## Usage
 
+All you need to do is upload the Excel file and your Word document. The backend will parse your document and replace any words it detects in column D with those of column C.
+
+![Alt Text](ReadmeImage2.jpg)
+
 The **'views.py'** file contains the **'upload_files()'** function that handles file uploads and automation. 
 
 When the user uploads the files, the **'handle_uploaded_file()'** function saves them to the desired directory. 
@@ -41,3 +45,5 @@ The **'Automation()'** function takes the parameters below:
 - Text_Target_Column: column containing the new text
 
 The **Automation()** function uses the win32com library to open the contract file and replace the old text with the new text. The generated contract file is saved in the demoapp/SavedFiles directory with the name 'New.docx'.
+
+
