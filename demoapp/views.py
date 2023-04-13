@@ -80,8 +80,19 @@ def Automation(excel_file,contract_file):
     document = word.Documents.Open(path)
 
     # Replace the old string with the new string
-    for i in range(len(r)):
-        word.Selection.Find.Execute(r[i], False, False, False, False, False, True, 1, True, a[i], 2)
+    #for i in range(len(r)):
+       # word.Selection.Find.Execute(r[i], False, False, False, False, False, True, 1, True, a[i], 2)
+
+# Replace the old string with the new string
+    try:
+        for i in range(len(r)):
+            if r[i] is None or a[i] is None:
+                break
+            else:
+                word.Selection.Find.Execute(r[i], False, False, False, False, False, True, 1, True, a[i], 2)         
+    except:
+        print(f"Error occurred in {r[i]}")
+        document.Close()
 
     # Save and close the Word document
     try:
