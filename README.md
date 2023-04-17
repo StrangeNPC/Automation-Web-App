@@ -3,6 +3,9 @@
 
 The project is built using Django and allows users to upload Excel and contract files, perform automation using the uploaded files, and download the generated file. The views.py file contains the code that handles file uploads and automation.
 
+Problem Statement:
+The problem statement that this app is trying to solve is that standard documents can range to hundreds of pages that need to be maintained as details continuously change. This would mean that too many manhours are spent on drafting, checking and fixing human errors. Documents that change frequently also make things painful for people to re-do their entire document.
+
 ![Alt Text](ReadmeImage1.jpg)
 
 
