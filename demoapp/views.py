@@ -7,6 +7,7 @@ from django.conf import settings
 import os
 from openpyxl import load_workbook
 import win32com.client
+import random
 
 #Import pythoncom
 import pythoncom
@@ -25,28 +26,36 @@ def handle_uploaded_file(f, filename):
             destination.write(chunk)
 
 def upload_files(request):
-    if request.method == 'POST':
-        # Get the uploaded files
-        excel_file = request.FILES['excel_file']
-        contract_file = request.FILES['contract_file']
+    try:
+        if request.method == 'POST':
+            # Get the uploaded files
+            excel_file = request.FILES['excel_file']
+            contract_file = request.FILES['contract_file']
 
-        # Save the uploaded files to the desired directory
-        handle_uploaded_file(excel_file, excel_file.name)
-        handle_uploaded_file(contract_file, contract_file.name)
+            # Save the uploaded files to the desired directory
+            handle_uploaded_file(excel_file, excel_file.name)
+            handle_uploaded_file(contract_file, contract_file.name)
 
-        # Call the Automation() function with the uploaded files
-        Automation(excel_file.name,contract_file.name)
+            # Call the Automation() function with the uploaded files
+            global Random_name
+            #Generate random number for the genrated file.
+            Random_name=random.randint(0,200)
+            Automation(excel_file.name,contract_file.name)
 
-        # Get the file path of the generated contract
-        contract_path = os.path.join("demoapp", "SavedFiles", 'New.docx')
+            # Get the file path of the generated contract
+            contract_path = os.path.join("demoapp", "SavedFiles", f'{Random_name}.docx')
 
-        # Return a response that prompts the user to download the generated file
-        with open(contract_path, 'rb') as f:
-            response = HttpResponse(f.read(), content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-            response['Content-Disposition'] = 'attachment; filename="New.docx"'
-            return response
+            # Return a response that prompts the user to download the generated file
+            with open(contract_path, 'rb') as f:
+                response = HttpResponse(f.read(), content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+                response['Content-Disposition'] = 'attachment; filename="{}.docx"'.format(Random_name)
+                return response
 
-    return render(request, 'index.html')
+        return render(request, 'index.html')
+    except Exception as e:
+        #return render(request, 'error.html', {'error_message': str(e)})
+        return render(request, 'error.html', {'error_message': "Error! Did you upload any files?"})
+
 
 def Automation(excel_file,contract_file):
 	# EDIT THE PARAMETERS BELOW!
@@ -96,10 +105,10 @@ def Automation(excel_file,contract_file):
 
     # Save and close the Word document
     try:
-        document.SaveAs(os.path.join(settings.BASE_DIR, 'demoapp', 'SavedFiles', 'New.docx'))
+        document.SaveAs(os.path.join(settings.BASE_DIR, 'demoapp', 'SavedFiles', f'{Random_name}.docx'))
         document.Close()
     except:
         print("Document Error Occured while saving")
         document.Close()
 
-Automation("Book.xlsx","ITT Test.docx")
+#Automation("Book.xlsx","ITT Test.docx")
