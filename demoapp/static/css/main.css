@@ -92,6 +92,7 @@ input, select, textarea {
 	html, body {
 		background: #1c1d26;
 	}
+	
 
 	body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 		-moz-animation: none !important;
@@ -3473,7 +3474,7 @@ input, select, textarea {
 	#banner {
 		background-attachment: fixed;
 		background-color: #272833;
-		background-image: url("{% static 'images/banner.jpg'%}");
+		background-image: url("{% static 'images/banner.jpg'%}"); 
 		background-position: center center;
 		background-size: cover;
 		box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.25);
@@ -3492,10 +3493,10 @@ input, select, textarea {
 		}
 
 		#banner:after {
-			background-image: -moz-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("images/overlay.png");;
-			background-image: -webkit-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("images/overlay.png");;
-			background-image: -ms-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("images/overlay.png");;
-			background-image: linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("images/overlay.png");;
+			background-image: -moz-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("{%'images/overlay.png'%}");;
+			background-image: -webkit-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("{%'images/overlay.png'%}");;
+			background-image: -ms-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("{%'images/overlay.png'%}");;
+			background-image: -moz-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("{% static 'images/overlay.png' %}");
 			content: '';
 			display: block;
 			height: 100%;
@@ -3515,7 +3516,6 @@ input, select, textarea {
 			vertical-align: middle;
 			z-index: 1;
 		}
-
 			#banner .content header {
 				display: inline-block;
 				vertical-align: middle;
@@ -3548,7 +3548,7 @@ input, select, textarea {
 
 	body.is-touch #banner {
 		background-attachment: scroll;
-	}
+	} 
 
 /* Footer */
 
@@ -4130,3 +4130,18 @@ input, select, textarea {
 					}
 
 	}
+
+	input[type=file]::file-selector-button {
+		margin-right: 20px;
+		border: none;
+		background: #084cdf;
+		padding: 10px 20px;
+		border-radius: 10px;
+		color: #fff;
+		cursor: pointer;
+		transition: background .2s ease-in-out;
+	  }
+	  
+	  input[type=file]::file-selector-button:hover {
+		background: #0d45a5;
+	  }
