@@ -85,20 +85,25 @@
 				</section>
 
 			<!-- Two -->
-				<section id="two" class="spotlight style2 right">
-					<span class="image fit main"><img src="{% static 'images/pic03.jpg'%}" alt="" /></span>
-					<div class="content">
-						<form method="post" action="{% url 'upload_files' %}" enctype="multipart/form-data">
-							{% csrf_token %}
-							<label for="excel_file">Upload <span style="color: lightgreen">Excel</span> File:</label>
+
+            <!-- Two -->
+                <section id="two" class="spotlight style2 right">
+                    <span class="image fit main"><img src="{% static 'images/pic03.jpg'%}" alt="" /></span>
+                    <div class="content">
+                        {% if error_message %}
+                            <p class="error-message">{{ error_message }}</p>
+                        {% endif %}
+                        <form method="post" action="{% url 'upload_files' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label for="excel_file">Upload <span style="color: lightgreen">Excel</span> File:</label>
 							<input type="file" name="excel_file" id="excel_file"><br><br>
 							<label for="contract_file">Upload <span style="color: cyan">Contract</span> File:</label>
-							<input type="file" name="contract_file" id="contract_file"><br><br>
-							<input type="submit" name="submit" value="Generate Contract">
-					</div>
-					<a href="#three" class="goto-next scrolly">Next</a>
-				</section>
-
+                            <input type="file" name="contract_file" id="contract_file"><br><br>
+                            <input type="submit" name="submit" value="Generate Contract">
+                        </form>
+                    </div>
+                    <a href="#three" class="goto-next scrolly">Next</a>
+                </section>
 			<!-- Three -->
 				<!-- <section id="three" class="spotlight style3 left">
 					<span class="image fit main bottom"><img src="{% static 'images/pic04.jpg'%}" alt="" /></span>
