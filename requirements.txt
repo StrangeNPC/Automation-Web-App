@@ -1,4 +1,4 @@
 Django==3.2.18
 openpyxl==3.1.2
-pywin32==305.1
+pywin32==305
 pywinpty==2.0.10
