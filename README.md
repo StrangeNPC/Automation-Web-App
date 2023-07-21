@@ -25,6 +25,8 @@ pip install -r requirements.txt.
 ```bash
   python manage.py runserver
 ```
+
+How to run Django in Visual Studio Code: https://code.visualstudio.com/docs/python/tutorial-django
     
 ## Usage
 
