@@ -38,7 +38,7 @@ The **'views.py'** file contains the **'upload_files()'** function that handles 
 
 When the user uploads the files, the **'handle_uploaded_file()'** function saves them to the desired directory. 
 
-The **'Automation()'** function is then called with the uploaded files.
+The **'Automation()'** function is then called with the uploaded file.
 
 The **'Automation()'** function takes the parameters below:
 
